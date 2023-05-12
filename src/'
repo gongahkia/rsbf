@@ -37,13 +37,21 @@ fn str_to_bfstring(input:&str) -> String {
 
 // ---
 
-fn bfstring_to_str(brainfuck:String) -> Vec<String> {
-    let instruction_collection:Vec<String> = brainfuck.split(".").into_iter().map(|x| x.to_string()).collect();
+fn bfstring_to_str(brainfuck:&str) -> Vec<&str> {
+    let instruction_collection:Vec<&str> = brainfuck.split(".").collect();
     instruction_collection
+}
+
+fn clean_up_str(collector:Vec<&str>) -> Vec<&str> {
+    for instruction in collector {
+        instruction = instruction.to_string();
+        instruction.remove(0);
+    }
+    collector
 }
 
 // ---
 
 fn main() {
-    println!("{:?}", bfstring_to_str(str_to_bfstring("monster hunter")));
+    println!("{}", str_to_bfstring("monster hunter"));
 }
