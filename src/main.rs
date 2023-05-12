@@ -1,13 +1,13 @@
 // OTHER LEARNING 
     // -- learn how rust lifetimes work
 // TO DO
+    // -- debug the file that is printing less than the full string
     // -- reads a local .bf file
     // -- base-level interpreter with direct translation
     // -- implement check to panic if there is no local brainfuck file found
     // -- write an interpreter and decryptor
     // -- write this in haskell
 
-// convert ASCII character to u8 value
 fn char_to_u8(character:char) -> u8 {
     character as u8
 }
@@ -42,16 +42,24 @@ fn bfstring_to_str(brainfuck:String) -> Vec<String> {
     instruction_collection
 }
 
-fn u8_to_char(number:usize) -> char {
+fn u8_to_char(collection_u8:Vec<u8>) -> String {
+    let mut output:String = String::from("");
+    for value in collection_u8 {
+        output.push(value as char);     
+    }
+    output
     // edit here as well!
-    number as char
 }
 
-fn collection_destructurer(collection:Vec<String>) -> String {
-    let mut output:String = String::from("");
+fn collection_destructurer(collection:Vec<String>) -> Vec<u8> {
+    let mut output:Vec<u8> = vec![];
     for instruction in collection {
-        println!("{}", collection.len()
-        // continue working on this here
+        let mut counter:u8 = 0;
+        let instruction_vector:Vec<char> = instruction.chars().collect();
+        for _character in instruction_vector {
+            counter += 1
+        }
+        output.push(counter);
     }
     output
 }
@@ -59,5 +67,5 @@ fn collection_destructurer(collection:Vec<String>) -> String {
 // ---
 
 fn main() {
-    println!("{:?}", collection_destructurer(bfstring_to_str(str_to_bfstring("monster hunter"))));
+    println!("{:?}", u8_to_char(collection_destructurer(bfstring_to_str(str_to_bfstring("monster hunter")))));
 }
