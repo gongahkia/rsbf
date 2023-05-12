@@ -1,11 +1,8 @@
 // OTHER LEARNING 
     // -- learn how rust lifetimes work
 // TO DO
-    // -- debug the file that is printing less than the full string
     // -- reads a local .bf file
-    // -- base-level interpreter with direct translation
-    // -- implement check to panic if there is no local brainfuck file found
-    // -- write an interpreter and decryptor
+        // -- implement check to panic if there is no local brainfuck file found
     // -- write this in haskell
 
 fn char_to_u8(character:char) -> u8 {
@@ -26,6 +23,7 @@ fn bf_to_bfstring(mut bf:String) -> String {
     bf
 }
 
+// &str literal to brainf
 fn str_to_bfstring(input:&str) -> String {
     let mut final_string:String = String::from("");
     for character in input.chars() {
@@ -35,9 +33,7 @@ fn str_to_bfstring(input:&str) -> String {
     final_string
 }
 
-// ---
-
-fn bfstring_to_str(brainfuck:String) -> Vec<String> {
+fn bfstring_to_string(brainfuck:&str) -> Vec<String> {
     let instruction_collection:Vec<String> = brainfuck.split(".>").into_iter().map(|x| x.to_string()).collect();
     instruction_collection
 }
@@ -48,7 +44,6 @@ fn u8_to_char(collection_u8:Vec<u8>) -> String {
         output.push(value as char);     
     }
     output
-    // edit here as well!
 }
 
 fn collection_destructurer(collection:Vec<String>) -> Vec<u8> {
@@ -56,16 +51,22 @@ fn collection_destructurer(collection:Vec<String>) -> Vec<u8> {
     for instruction in collection {
         let mut counter:u8 = 0;
         let instruction_vector:Vec<char> = instruction.chars().collect();
-        for _character in instruction_vector {
-            counter += 1
+        for character in instruction_vector {
+            if character == '+' {
+                counter += 1
+            }
         }
         output.push(counter);
     }
     output
 }
 
-// ---
+// bf to dynamic String
+fn bfstring_to_str(input:&str) -> String {
+    let output:String = u8_to_char(collection_destructurer(bfstring_to_string(input)));
+    output
+}
 
 fn main() {
-    println!("{:?}", u8_to_char(collection_destructurer(bfstring_to_str(str_to_bfstring("monster hunter")))));
+    println!("{}", bfstring_to_str(str_to_bfstring("yes").as_str()));
 }
