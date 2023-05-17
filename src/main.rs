@@ -1,8 +1,7 @@
 // OTHER LEARNING 
     // -- learn how rust lifetimes work
 // TO DO
-    // -- reads a local .bf file
-        // -- implement check to panic if there is no local brainfuck file found
+    // -- implement actual loops in brainfuck as well
     // -- write this in haskell
 
 fn char_to_u8(character:char) -> u8 {
