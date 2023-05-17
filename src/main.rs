@@ -1,8 +1,17 @@
 // OTHER LEARNING 
     // -- learn how rust lifetimes work
+        // -- refer to here (https://doc.rust-lang.org/rust-by-example/scope/lifetime.html)
+    // -- revise how the rust borrow checker works
 // TO DO
     // -- implement actual loops in brainfuck as well
     // -- write this in haskell
+    // -- additional reading
+        // (https://softwareengineering.stackexchange.com/questions/165543/how-to-write-a-very-basic-compiler) for how to write a compiler
+        // (https://thesharperdev.com/how-to-write-a-brainfuck-interpreter-in-c/) for reference on
+        // structure
+    // -- look into writing interpreters for other escoteric languages
+        // malboge
+        // lolcode
 
 fn char_to_u8(character:char) -> u8 {
     character as u8
@@ -22,7 +31,6 @@ fn bf_to_bfstring(mut bf:String) -> String {
     bf
 }
 
-// &str literal to brainf
 fn str_to_bfstring(input:&str) -> String {
     let mut final_string:String = String::from("");
     for character in input.chars() {
@@ -60,7 +68,6 @@ fn collection_destructurer(collection:Vec<String>) -> Vec<u8> {
     output
 }
 
-// bf to dynamic String
 fn bfstring_to_str(input:&str) -> String {
     let output:String = u8_to_char(collection_destructurer(bfstring_to_string(input)));
     output
